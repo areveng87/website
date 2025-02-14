@@ -1,0 +1,267 @@
+:root , *{
+    margin: 0;
+    padding: 0;
+    color-scheme: dark light;
+    --card-height: 300px;
+    --card-width: calc(var(--card-height) / 1.5);
+    font-family: system-ui;
+}
+.title {
+
+    text-align: center;
+}
+.btnShare {
+    display: grid;
+    place-items: center;
+    background: #fcc7d1;
+    color: #fa4a78;
+    width: 15rem;
+    height: 4rem;
+    border-radius: 1rem;
+    border: 0;
+    font-size: 2rem;
+}
+.scene{
+    border: 1px solid #ff0900;
+    top:0;
+    bottom:0;
+    right: 0;
+    lefT: 0;
+    position: absolute;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    &.scene1 {
+        background: #fde8e7;
+        button  {
+            display: flex;
+            justify-content: center;align-items: center;
+            width: 33vw;
+            height: 33vw;
+            background: transparent;
+            border-radius: 33vh;
+            border: 0;
+            i {
+                font-size: 10rem;
+                position: relative;
+                color: #fcc7d1;
+                span{
+                    color: #fa4a78;
+                    font-size: 1rem;
+                    position: absolute;
+                    top:0;bottom: 0;
+                    right:0; left: 0;
+                    display: grid;place-items: center;
+                }
+                &:hover {
+
+                    animation: latido 1s infinite ease-in-out;
+                }
+
+                cursor: pointer;
+            }
+            &:focus, &:focus-within, &.active, &:hover{
+                i {
+                    animation: expansion 1s forwards ease-in-out;
+                    span {
+                        display: none;
+                    }
+                }
+            }
+
+        }
+    }
+    &.scene2 {
+        background: #fcc7d1;
+        color: #fa4a78;
+        display: grid;place-items: center;
+        .menu {
+            display: flex;
+            flex-direction: column;
+            gap: 4rem;
+            .buttons {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-around;
+                .placeholderBtn {
+                    height: 3rem;
+                    width: 10rem;
+
+                    .btn {
+                        position: absolute;
+                        height: 3rem;
+                        width: 10rem;
+                        background: #fa4a78;
+                        border: 0;
+                        border-radius: 1rem;
+                        cursor: pointer;
+                        &.btnNo {
+                            background: transparent;
+                            border: 2px solid #fa4a78;
+                            color: #fa4a78;
+                        }
+                        &.btnYes:focus {
+                            animation: expansion 1s forwards ease-in-out;
+                            span {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    &.scene3 {
+        background: #fa4a78;
+        display: grid;
+        place-items: center;
+        grid-template-rows: 4rem 1fr 4rem;
+        grid-template-columns: 1fr;
+        .title {
+            display: grid;
+            place-items: center;
+        }
+        .cards {
+            display: flex;
+            height: 100%;
+            flex-direction: row;
+            flex-wrap: wrap;
+            overflow-y: auto;
+            /*padding-top: 4rem;*/
+            justify-content: center;
+            .card{
+                transform: scale(0.8);
+            }
+        }
+
+    }
+
+}
+@keyframes latido {
+    0% {
+        transform: scale(1);
+    }
+    25% {
+        transform: scale(1.2);
+    }
+    50% {
+        transform: scale(1);
+    }
+    75% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+@keyframes expansion {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(100);
+    }
+}
+
+.card {
+    width: var(--card-width);
+    height: var(--card-height);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    /*padding: 0 36px;*/
+    perspective: 2500px;
+    margin: 0 50px;
+
+}
+
+.cover-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.wrapper {
+    transition: all 0.5s;
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+.card:hover .wrapper {
+    transform: perspective(900px) translateY(-5%) rotateX(25deg) translateZ(0);
+    box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+}
+
+.wrapper::before,
+.wrapper::after {
+    content: "";
+    opacity: 0;
+    width: 100%;
+    height: 80px;
+    transition: all 0.5s;
+    position: absolute;
+    left: 0;
+}
+.wrapper::before {
+    top: 0;
+    height: 100%;
+    background-image: linear-gradient(
+            to top,
+            transparent 46%,
+            rgba(12, 13, 19, 0.5) 68%,
+            rgba(12, 13, 19) 97%
+    );
+}
+.wrapper::after {
+    bottom: 0;
+    opacity: 1;
+    background-image: linear-gradient(
+            to bottom,
+            transparent 46%,
+            rgba(12, 13, 19, 0.5) 68%,
+            rgba(12, 13, 19) 97%
+    );
+}
+
+.card:hover .wrapper::before,
+.wrapper::after {
+    opacity: 1;
+}
+
+.card:hover .wrapper::after {
+    height: 120px;
+}
+.title {
+    width: 100%;
+    transition: transform 0.5s;
+	color: white;
+    font-weight: bold;
+}
+.card:hover .title {
+    transform: translate3d(0%, 0px , 100px);
+}
+
+.character {
+    width: 100%;
+    opacity: 0;
+    transition: all 0.5s;
+    position: absolute;
+    z-index: -1;
+    color: white;
+    font-weight: bold;
+}
+
+.card:hover .character {
+    opacity: 1;
+    transform: translate3d(0%, -50%, 100px);
+    height: calc(var(--card-height) / 2);
+    display: grid;
+    place-items: center;
+    text-align: center;
+}

@@ -57,7 +57,7 @@ new Vue({
                 return false;
             }
             const texto = encodeURIComponent(this.message); // Codifica el mensaje
-            const url = `https://api.whatsapp.com/send?text=${texto}`; // URL de WhatsApp
+            const url = `https://api.whatsapp.com/send?phone=34603489473&text=${texto}`; // URL de WhatsApp
 
             // Abre WhatsApp en una nueva pestaña
             window.open(url, "_blank");
